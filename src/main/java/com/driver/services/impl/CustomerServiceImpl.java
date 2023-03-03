@@ -61,7 +61,7 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Integer> availableIds = new ArrayList<>();
 		for (Driver d: allDriversList)
 		{
-			if (d.getCab().isAvailable() == true)
+			if (d.getCab().getAvailable() == true)
 			{
 				availableIds.add(d.getDriverId());
 			}
