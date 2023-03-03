@@ -44,9 +44,9 @@ public class CustomerServiceImpl implements CustomerService {
 		// check all trips of this customer. If status of these trips is CONFIRED then change it to CANCELLED
 		for (TripBooking t: tripBookingList)
 		{
-			if (t.getTripStatus() == TripStatus.CONFIRMED)
+			if (t.getStatus() == TripStatus.CONFIRMED)
 			{
-				t.setTripStatus(TripStatus.CANCELED);
+				t.setStatus(TripStatus.CANCELED);
 			}
 		}
 		customerRepository2.delete(customer);
@@ -83,7 +83,7 @@ public class CustomerServiceImpl implements CustomerService {
 		tripBooking.setFromLocation(fromLocation);
 		tripBooking.setToLocation(toLocation);
 		tripBooking.setDistanceInKm(distanceInKm);
-		tripBooking.setTripStatus(TripStatus.CONFIRMED);
+		tripBooking.setStatus(TripStatus.CONFIRMED);
 		tripBooking.setCustomer(customer);
 		tripBooking.setDriver(driver);
 		int rate = driver.getCab().getPerKmRate();
@@ -108,7 +108,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
 
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
-		tripBooking.setTripStatus(TripStatus.CANCELED);
+		tripBooking.setStatus(TripStatus.CANCELED);
 		tripBooking.setBill(0);
 		tripBookingRepository2.save(tripBooking);
 
@@ -122,7 +122,7 @@ public class CustomerServiceImpl implements CustomerService {
 	{
 		//Complete the trip having given trip Id and update TripBooking attributes accordingly
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
-		tripBooking.setTripStatus(TripStatus.COMPLETED);
+		tripBooking.setStatus(TripStatus.COMPLETED);
 
 		int distance = tripBooking.getDistanceInKm();
 

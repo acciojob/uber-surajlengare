@@ -54,9 +54,9 @@ public class DriverServiceImpl implements DriverService {
 		// check all trips of this driver. If status of these trips is CONFIRED then change it to CANCELLED
 		for (TripBooking t: tripBookingList)
 		{
-			if (t.getTripStatus() == TripStatus.CONFIRMED)
+			if (t.getStatus() == TripStatus.CONFIRMED)
 			{
-				t.setTripStatus(TripStatus.CANCELED);
+				t.setStatus(TripStatus.CANCELED);
 			}
 		}
 
